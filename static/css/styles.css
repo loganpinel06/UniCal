@@ -65,12 +65,12 @@ body {
   color: var(--text-primary);
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-5xl);
 }
 
 /* Container for all content */
 .container {
-  max-width: 800px;
+  max-width: 1400px;
   margin: 0 auto;
   background: var(--surface);
   border-radius: var(--radius-xl);
@@ -78,22 +78,20 @@ body {
   padding: var(--spacing-5xl);
   position: relative;
   overflow: hidden;
-}
-
-.container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4xl);
+  grid-template-areas: 
+    "title"
+    "meals"
+    "total";
 }
 
 /* Title Container */
 .title-container {
+  grid-area: title;
   text-align: center;
-  margin-bottom: var(--spacing-6xl);
+  margin-bottom: 0;
   padding-bottom: var(--spacing-3xl);
   border-bottom: 2px solid var(--border-color);
 }
@@ -118,14 +116,24 @@ body {
   margin-bottom: 0;
 }
 
+/* Meals Grid Container */
+.meals-grid {
+  grid-area: meals;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-3xl);
+  margin: 0;
+}
+
 /* Meal Form Styling */
 .meal-form {
-  margin-bottom: var(--spacing-4xl);
+  margin-bottom: 0;
   background: var(--surface-alt);
   border-radius: var(--radius-lg);
   padding: var(--spacing-3xl);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
+  height: fit-content;
 }
 
 .meal-form:hover {
@@ -152,19 +160,19 @@ body {
   display: inline-block;
 }
 
-.meal-form:nth-child(2) h2::before { /* Breakfast */
+.meal-form:nth-child(1) h2::before { /* Breakfast */
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
 }
 
-.meal-form:nth-child(3) h2::before { /* Lunch */
+.meal-form:nth-child(2) h2::before { /* Lunch */
   background: linear-gradient(135deg, #34d399, #10b981);
 }
 
-.meal-form:nth-child(4) h2::before { /* Dinner */
+.meal-form:nth-child(3) h2::before { /* Dinner */
   background: linear-gradient(135deg, #f87171, #ef4444);
 }
 
-.meal-form:nth-child(5) h2::before { /* Snacks */
+.meal-form:nth-child(4) h2::before { /* Snacks */
   background: linear-gradient(135deg, #a78bfa, #8b5cf6);
 }
 
@@ -303,12 +311,13 @@ button[type="submit"]:active {
 
 /* Total Calories Section */
 .total-calories {
+  grid-area: total;
   background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
   color: white;
   padding: var(--spacing-4xl);
   border-radius: var(--radius-lg);
   text-align: center;
-  margin-top: var(--spacing-6xl);
+  margin-top: 0;
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
@@ -364,6 +373,17 @@ button[type="submit"]:active {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+  
+  .meals-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding: var(--spacing-sm);
@@ -371,6 +391,12 @@ button[type="submit"]:active {
   
   .container {
     padding: var(--spacing-3xl) var(--spacing-2xl);
+    max-width: none;
+  }
+  
+  .meals-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
   }
   
   .title-container h1 {
