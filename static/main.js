@@ -1,5 +1,35 @@
 //main.js will handle all frontend logic for the main route
 
+//global variable to track total calories
+let totalCalories = 0;
+
+//function to update the total calories display
+const updateTotalCalories = (calories) => {
+    totalCalories += calories;
+    const totalElement = document.getElementById('total-calories');
+    if (totalElement) {
+        totalElement.textContent = totalCalories;
+    }
+};
+
+//function to reset total calories and all meal entries
+const resetTotalCalories = () => {
+    totalCalories = 0;
+    const totalElement = document.getElementById('total-calories');
+    if (totalElement) {
+        totalElement.textContent = totalCalories;
+    }
+    
+    // Remove all meal result rows from all forms
+    const allResultElements = document.querySelectorAll('.meal-form .form-row');
+    allResultElements.forEach(element => {
+        // Only remove elements that contain meal results (have paragraphs with meal info)
+        if (element.querySelector('p')) {
+            element.remove();
+        }
+    });
+};
+
 //fetch response function which will fetch the backend POST routes response and update the DOM
 const fetchResponse = async (event) => {
     //prevent the default form submission behavior
@@ -35,6 +65,11 @@ const fetchResponse = async (event) => {
         `;
         //append the result element to the document
         form.appendChild(resultElement);
+        
+        //update the total calories dynamically
+        const calorieValue = parseInt(data.calories.calories) || 0;
+        updateTotalCalories(calorieValue);
+        
         //reset the form 
         form.reset();
     } catch (err) {
@@ -44,6 +79,7 @@ const fetchResponse = async (event) => {
 }
 
 //MAIN CODE
+
 //ADD EVENT LISTENERS
 //get all meal forms and add the same event listener to each
 const mealForms = document.querySelectorAll('.meal-form form');

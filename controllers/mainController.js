@@ -5,8 +5,10 @@ import generate_calories from '../services/gemini.js';
 
 //main get route functionality which renders html template
 export const getMain = async (req, res, next) => {
+  //create the total calories variable
+  let totalCalories = 0;
   //render the html template 
-  res.render('main.html');
+  res.render('main.html', { totalCalories: totalCalories });
 };
 
 //handle backend logic for POST routes 
