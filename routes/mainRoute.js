@@ -9,9 +9,10 @@ import { getMain } from "../controllers/mainController.js";
 const mainRouter = express.Router(); 
 
 //ROUTES 
-
 //GET ROUTES (render templates) 
 mainRouter.get('/', getMain);
+
+//POST ROUTES
 
 //export the mainRouter 
 export default mainRouter 
