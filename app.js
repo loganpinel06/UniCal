@@ -6,6 +6,9 @@ import nunjucks from 'nunjucks';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+//import routers 
+import mainRouter from './routes/mainRoute.js';
+
 //remake __dirname for ES6 syntax 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +25,9 @@ nunjucks.configure('templates', {
   autoescape: true,
   express: app,
 });
+
+//mount routers to the app
+app.use('/', mainRouter);
 
 //define the apps port 
 const port = 3000;
