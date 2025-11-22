@@ -19,7 +19,6 @@ export const getMealCalories = async (req, res, next) => {
     const meal_description = req.body.meal;
     //use gemini to generate calories based on meal description
     const calories = await generate_calories(meal_description);
-    console.log(calories);
     //send a json response to the frontend with the calories data
     res.json(calories);
   //handle errors
