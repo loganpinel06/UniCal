@@ -1,11 +1,12 @@
 {% extends 'base.html' %} 
 
 {% block scripts %}
-  <script src="/static/main.js" defer></script>
+  <script src="/static/javascript/main.js" defer></script>
 {% endblock %}
 
 {% block content %} 
 
+<div class="container">
 <div class="title-container">
   <h1>UniCal</h1>
   <p>UniCal aims to provide college students with a simple way to keep track of their daily calorie intake with the help of AI.</p>
@@ -76,6 +77,7 @@
 <div class="total-calories">
   <h3>Total Calories: <span id="total-calories">{{ totalCalories }}</span></h3>
   <button type="button" id="reset-calories-btn" onclick="resetAll()">Reset</button>
+</div>
 </div>
 
 {% endblock %}
