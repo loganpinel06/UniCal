@@ -3,6 +3,7 @@
 //global variable to track total calories
 let totalCalories = 0;
 
+//HELPER FUNCTIONS
 //function to update the total calories display
 const updateTotalCalories = (calories) => {
     totalCalories += calories;
@@ -13,7 +14,7 @@ const updateTotalCalories = (calories) => {
 };
 
 //function to reset total calories and all meal entries
-const resetTotalCalories = () => {
+const resetAll = () => {
     totalCalories = 0;
     const totalElement = document.getElementById('total-calories');
     if (totalElement) {
@@ -21,15 +22,13 @@ const resetTotalCalories = () => {
     }
     
     // Remove all meal result rows from all forms
-    const allResultElements = document.querySelectorAll('.meal-form .form-row');
+    const allResultElements = document.querySelectorAll('.meal-result');
     allResultElements.forEach(element => {
-        // Only remove elements that contain meal results (have paragraphs with meal info)
-        if (element.querySelector('p')) {
-            element.remove();
-        }
+        element.remove();
     });
 };
 
+//FRONTEND DOM FUNCTIONS
 //fetch response function which will fetch the backend POST routes response and update the DOM
 const fetchResponse = async (event) => {
     //prevent the default form submission behavior
@@ -54,20 +53,23 @@ const fetchResponse = async (event) => {
         }
         //parse the response as json
         const data = await response.json();
+        //store the calorie value for deletion
+        const calorieValue = parseInt(data.calories.calories) || 0;
         //create a new div html element
         const resultElement = document.createElement('div');
         //give the div a class for styling
-        resultElement.className = 'form-row';
+        resultElement.className = 'form-row meal-result';
+        resultElement.dataset.calories = calorieValue;
         //update the text content of the div element with the calories data
         resultElement.innerHTML = `
             <p>Meal: ${data.meal_description}</p>
             <p>Estimated Calories: ${data.calories.calories}</p>
+            <button type="button" class="delete-meal-btn" onclick="deleteMealResult(this)">Delete</button>
         `;
         //append the result element to the document
         form.appendChild(resultElement);
         
         //update the total calories dynamically
-        const calorieValue = parseInt(data.calories.calories) || 0;
         updateTotalCalories(calorieValue);
         
         //reset the form 
@@ -77,6 +79,22 @@ const fetchResponse = async (event) => {
         console.log(err);
     }
 }
+
+//function to delete individual meal results
+const deleteMealResult = (button) => {
+    const mealElement = button.parentElement;
+    const calories = parseInt(mealElement.dataset.calories) || 0;
+    
+    // Subtract calories from total
+    totalCalories -= calories;
+    const totalElement = document.getElementById('total-calories');
+    if (totalElement) {
+        totalElement.textContent = totalCalories;
+    }
+    
+    // Remove the element from DOM
+    mealElement.remove();
+};
 
 //MAIN CODE
 

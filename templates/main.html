@@ -6,8 +6,11 @@
 
 {% block content %} 
 
-<div>
+<div class="title-container">
   <h1>UniCal</h1>
+  <p>UniCal aims to provide college students with a simple way to keep track of their daily calorie intake with the help of AI.</p>
+  <p>Please note that calorie estimates are approximate and may vary based on ingredients and portion sizes.</p>
+  <p>Please be as descriptive as possible when entering your meals to get the most accurate estimates.</p>
 </div>
 
 <div class="meal-form">
@@ -55,9 +58,24 @@
   </form> 
 </div>
 
+<div class="meal-form">
+  <h2>Snacks</h2>
+  <form id="snacks-form" method="POST" action="/generate-calories">
+    <div class="form-row">
+      <!-- Meal Input -->
+      <label for="snacks-meal">Describe Meal: </label>
+      <input type="text" id="snacks-meal" name="meal" required>
+    </div>
+    <div class="form-row">
+      <!-- Submit Button -->
+      <button type="submit" id="snacks-submit-button">Calculate</button>
+    </div>
+  </form> 
+</div>
+
 <div class="total-calories">
   <h3>Total Calories: <span id="total-calories">{{ totalCalories }}</span></h3>
-  <button type="button" id="reset-calories-btn" onclick="resetTotalCalories()">Reset</button>
+  <button type="button" id="reset-calories-btn" onclick="resetAll()">Reset</button>
 </div>
 
 {% endblock %}
