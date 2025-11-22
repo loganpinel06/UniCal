@@ -106,10 +106,18 @@ body {
 
 .title-container p {
   color: var(--text-secondary);
-  font-size: var(--font-size-lg);
-  max-width: 600px;
-  margin: 0 auto var(--spacing-lg);
-  line-height: 1.8;
+  font-size: var(--font-size-sm);
+  max-width: none;
+  margin: 0 0 var(--spacing-sm);
+  line-height: 1.5;
+  font-weight: 400;
+  opacity: 0.75;
+  text-align: center;
+  padding: var(--spacing-xs) 0;
+}
+
+.title-container p:hover {
+  opacity: 0.9;
 }
 
 .title-container p:last-child {
