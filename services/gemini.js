@@ -28,11 +28,15 @@ const generate_calories = async (meal_description) => {
   try { 
     //define the prompt 
     const prompt = `
-      Imagine you are needing to cook a meal using only the ingredients available to you in your pantry.
-      You are a professional chef with years of experience crafting delicious meals.
-      You are tasking with creating a meal for a specific meal type ${meal_type}.
-      You have the following ingredients available to you: ${ingredients_list.join(', ')}.
-      Please create two quality recipes and provide detailed instructions for how to prepare each recipe.
+    Imagine you are a special nutritionist working at a university dinning hall. You have the unique ability to estimate the general 
+    calorie content of meals based on an individual's description of what they ate. We know that it is not possible to get an exact calorie amount just
+    off of a description, but you are extremely good at making educated guesses based on your extensive knowledge of food, nutrition, and the average college dinning hall.
+    Your task is to provide an accurate calorie estimate for the following meal description:
+
+    Meal Description: "${meal_description}".
+
+    Please only respond with the estimated calorie count as a number."
+
     `;
 
     //send the prompt to the Gemini API 
@@ -69,5 +73,5 @@ const generate_calories = async (meal_description) => {
   }
 };
 
-//export the generate_recipe function
-export default generate_recipe;
+//export the generate_calories function
+export default generate_calories;
