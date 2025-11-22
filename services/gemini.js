@@ -48,14 +48,11 @@ const generate_calories = async (meal_description) => {
         //and provide the structure of the JSON 
         responseMimeType: "application/json",
         responseSchema: {
-          type: Type.ARRAY,
-          items: {
-            type: Type.OBJECT,
-            properties: {
-              calories: { type: Type.NUMBER },
-            },
-            propertyOrdering: ["calories"],
+          type: Type.OBJECT,
+          properties: {
+            calories: { type: Type.NUMBER },
           },
+          propertyOrdering: ["calories"],
         },
         //Disable Thinking
         thinkingConfig: {
