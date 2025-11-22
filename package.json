@@ -2,6 +2,7 @@
   "name": "unical",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/loganpinel06/UniCal.git"
   },
-  "author": "",
+  "author": "Logan Pinel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/loganpinel06/UniCal/issues"
@@ -17,6 +18,8 @@
   "homepage": "https://github.com/loganpinel06/UniCal#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "@google/genai": "^1.30.0",
+    "express": "^5.1.0",
+    "nunjucks": "^3.2.4"
   }
 }
