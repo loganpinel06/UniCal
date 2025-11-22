@@ -30,7 +30,8 @@ const fetchResponse = async (event) => {
         resultElement.className = 'form-row';
         //update the text content of the div element with the calories data
         resultElement.innerHTML = `
-            <p>Estimated Calories: ${data.calories}</p>
+            <p>Meal: ${data.meal_description}</p>
+            <p>Estimated Calories: ${data.calories.calories}</p>
         `;
         //append the result element to the document
         form.appendChild(resultElement);

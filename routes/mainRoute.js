@@ -18,5 +18,14 @@ mainRouter.use(express.urlencoded({ extended: true })); //for form submissions
 //POST ROUTES
 mainRouter.post('/generate-calories', getMealCalories);
 
+//ERROR HANDLING MIDDLEWARE 
+//(can move this to a global file later if more middlewares get used)
+mainRouter.use((err, req, res, next) => {
+  //log the error
+  console.log(err)
+  //send a response and status
+  res.status(500).send("Something  Broke");
+});
+
 //export the mainRouter 
 export default mainRouter 
