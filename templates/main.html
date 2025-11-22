@@ -15,12 +15,42 @@
   <form id="breakfast-form" method="POST" action="/generate-calories">
     <div class="form-row">
       <!-- Meal Input -->
-      <label for="meal">Describe Meal: </label>
-      <input type="text" id="meal" name="meal" required>
+      <label for="breakfast-meal">Describe Meal: </label>
+      <input type="text" id="breakfast-meal" name="meal" required>
     </div>
     <div class="form-row">
       <!-- Submit Button -->
-      <button type="submit" id="submit-button">Add</button>
+      <button type="submit" id="breakfast-submit-button">Calculate</button>
+    </div>
+  </form> 
+</div>
+
+<div class="meal-form">
+  <h2>Lunch</h2>
+  <form id="lunch-form" method="POST" action="/generate-calories">
+    <div class="form-row">
+      <!-- Meal Input -->
+      <label for="lunch-meal">Describe Meal: </label>
+      <input type="text" id="lunch-meal" name="meal" required>
+    </div>
+    <div class="form-row">
+      <!-- Submit Button -->
+      <button type="submit" id="lunch-submit-button">Calculate</button>
+    </div>
+  </form> 
+</div>
+
+<div class="meal-form">
+  <h2>Dinner</h2>
+  <form id="dinner-form" method="POST" action="/generate-calories">
+    <div class="form-row">
+      <!-- Meal Input -->
+      <label for="dinner-meal">Describe Meal: </label>
+      <input type="text" id="dinner-meal" name="meal" required>
+    </div>
+    <div class="form-row">
+      <!-- Submit Button -->
+      <button type="submit" id="dinner-submit-button">Calculate</button>
     </div>
   </form> 
 </div>
